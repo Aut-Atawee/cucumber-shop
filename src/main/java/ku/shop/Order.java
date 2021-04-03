@@ -22,7 +22,10 @@ public class Order {
     }
 
     public void addItem(Product prod, int quantity) {
-        items.add(new OrderItem(prod, quantity));
+        if (quantity <= prod.getQuantity()) {
+            items.add(new OrderItem(prod, quantity));
+            prod.setQuantity(prod.getQuantity()-quantity);
+        }
     }
 
     public double getTotal() {
